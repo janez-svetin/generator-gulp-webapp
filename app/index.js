@@ -270,6 +270,11 @@ module.exports = generators.Base.extend({
           ]
         }
       );
+
+      this.fs.copy(
+        this.templatePath('index.jade'),
+        this.destinationPath('app/index.jade')
+      );
     },
 
     misc: function () {

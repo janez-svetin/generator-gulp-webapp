@@ -1,6 +1,6 @@
 {
   "name": "generator-qwork",
-  "version": "1.0.3",
+  "version": "0.0.1",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
   "repository": "janez-svetin/generator-qwork",
