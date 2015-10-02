@@ -30,16 +30,11 @@ html<% if (includeModernizr) { %>.no-js<% } %>
     // build:js scripts/vendor.js
     // bower:js
     script(src='../bower_components/jquery/dist/jquery.js')
+<% bsPlugins.forEach(function (plugin) { -%>
+    script(src='<%= bsPath + plugin %>.js')
+<% }) -%>
     // endbower
     // endbuild
-
-    <% if (includeBootstrap) { %>
-    // build:js scripts/plugins.js
-    <% bsPlugins.forEach(function (plugin) { -%>
-    script(src='<%= bsPath + plugin %>.js')
-    <% }) -%>
-    // endbuild
-    <% } %>
 
     // build:js scripts/main.js
     script(src='scripts/main.js')

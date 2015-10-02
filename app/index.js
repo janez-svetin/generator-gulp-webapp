@@ -235,7 +235,7 @@ module.exports = generators.Base.extend({
 
       // path prefix for Bootstrap JS files
       if (this.includeBootstrap) {
-        bsPath = '/bower_components/';
+        bsPath = '../bower_components/';
 
         if (this.includeSass) {
           bsPath += 'bootstrap-sass/assets/javascripts/bootstrap/';
@@ -304,15 +304,6 @@ module.exports = generators.Base.extend({
       this.log(howToInstall);
       return;
     }
-
-    // wire Bower packages to .jade
-    wiredep({
-      bowerJson: bowerJson,
-      directory: 'bower_components',
-      exclude: ['bootstrap-sass', 'bootstrap.js'],
-      ignorePath: /^(\.\.\/)*\.\./,
-      src: 'app/layouts/default.jade'
-    });
 
     if (this.includeSass) {
       // wire Bower packages to .scss
