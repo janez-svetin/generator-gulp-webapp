@@ -9,7 +9,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {<% if (includeSass) { %>
-  return gulp.src('app/styles/*.scss')
+  return gulp.src('app/styles/**/*.scss')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync({
@@ -17,7 +17,7 @@ gulp.task('styles', () => {<% if (includeSass) { %>
       precision: 10,
       includePaths: ['.']
     }).on('error', $.sass.logError))<% } else { %>
-  return gulp.src('app/styles/*.css')
+  return gulp.src('app/styles/**/*.css')
     .pipe($.sourcemaps.init())<% } %>
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
@@ -48,7 +48,7 @@ gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 gulp.task('views', () => {
-  return gulp.src('app/*.jade')
+  return gulp.src('app/**/*.jade')
     .pipe($.jade({pretty: true}))
     .pipe(gulp.dest('.tmp'))
     .pipe(reload({stream: true}));
@@ -57,7 +57,7 @@ gulp.task('views', () => {
 gulp.task('html', ['views', 'styles'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-  return gulp.src(['app/*.html', '.tmp/*.html'])
+  return gulp.src(['app/**/*.html', '.tmp/**/*.html'])
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.minifyCss({compatibility: '*'})))
@@ -92,9 +92,9 @@ gulp.task('fonts', () => {
 
 gulp.task('extras', () => {
   return gulp.src([
-    'app/*.*',
-    '!app/*.html',
-    '!app/*.jade'
+    'app/**/*.*',
+    '!app/**/*.html',
+    '!app/**/*.jade'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
@@ -115,8 +115,8 @@ gulp.task('serve', ['views', 'styles', 'fonts'], () => {
   });
 
   gulp.watch([
-    'app/*.html',
-    '.tmp/*.html',
+    'app/**/*.html',
+    '.tmp/**/*.html',
     'app/scripts/**/*.js',
     'app/images/**/*',
     '.tmp/fonts/**/*'
@@ -158,13 +158,13 @@ gulp.task('serve:test', () => {
 
 // inject bower components
 gulp.task('wiredep', () => {<% if (includeSass) { %>
-  gulp.src('app/styles/*.scss')
+  gulp.src('app/styles/**/*.scss')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
     .pipe(gulp.dest('app/styles'));
 <% } %>
-  gulp.src('app/layouts/*.jade')
+  gulp.src('app/layouts/**/*.jade')
     .pipe(wiredep({<% if (includeBootstrap) { if (includeSass) { %>
       exclude: ['bootstrap-sass'],<% } else { %>
       exclude: ['bootstrap.js'],<% }} %>

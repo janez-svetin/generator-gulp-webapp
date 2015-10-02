@@ -230,7 +230,7 @@ module.exports = generators.Base.extend({
       );
     },
 
-    html: function () {
+    jade: function() {
       var bsPath;
 
       // path prefix for Bootstrap JS files
@@ -245,8 +245,8 @@ module.exports = generators.Base.extend({
       }
 
       this.fs.copyTpl(
-        this.templatePath('index.html'),
-        this.destinationPath('app/index.html'),
+        this.templatePath('layouts/default.jade'),
+        this.destinationPath('app/layouts/default.jade'),
         {
           appname: this.appname,
           includeSass: this.includeSass,
@@ -300,13 +300,13 @@ module.exports = generators.Base.extend({
       return;
     }
 
-    // wire Bower packages to .html
+    // wire Bower packages to .jade
     wiredep({
       bowerJson: bowerJson,
       directory: 'bower_components',
       exclude: ['bootstrap-sass', 'bootstrap.js'],
       ignorePath: /^(\.\.\/)*\.\./,
-      src: 'app/index.html'
+      src: 'app/layouts/default.jade'
     });
 
     if (this.includeSass) {
