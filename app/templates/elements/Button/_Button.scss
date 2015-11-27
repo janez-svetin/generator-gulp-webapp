@@ -1,0 +1,13 @@
+.m-Button {
+  display: inline-block;
+  padding: 13px 26px 12px;
+  border: 1px solid gray;
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 5px 0;
+  width: 100%;
+
+  @media(min-width: $screen-sm) {
+    width: auto;
+    margin: 0 5px;
+  }
+}

@@ -1,0 +1,35 @@
+//SUIT CSS naming conventions: https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md
+
+.m-Message {
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 46px 5px 45px 5px;
+  text-align: center;
+
+  @media(min-width: $screen-sm-min) {
+    padding: 122px 5px 115px;
+  }
+}
+
+.m-Message-header {
+  padding-bottom: 30px;
+}
+
+.m-Message-heading {
+  padding-bottom: 10px;
+}
+
+.m-Message-subheading {}
+
+.m-Message-body {
+  padding-bottom: 36px;
+
+  @media(min-width: $screen-lg-min) {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  p {}
+}

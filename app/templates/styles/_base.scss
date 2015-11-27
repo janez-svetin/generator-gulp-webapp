@@ -1,0 +1,63 @@
+//Boostrap's Sass variables: https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+
+//Container (http://getbootstrap.com/customize/#container-sizes)
+// $container-lg: 1080px + $grid-gutter-width; // 1110px
+// $container-sm: auto;
+
+//Media queries (http://getbootstrap.com/customize/#media-queries-breakpoints)
+$screen-xs-max: 639px;
+$screen-sm-min: 640px;
+$screen-sm-max: 1023px;
+$screen-md-min: 1024px;
+$screen-md-max: 1199px;
+
+//Old browser warning
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+//Global styles (http://getbootstrap.com/customize/#scaffolding)
+$body-bg: $color-white;
+$text-color: $color-black;
+// $link-color: $color-black;
+// $link-hover-color: $color-black;
+$link-hover-decoration: none;
+
+//-Typography (http://getbootstrap.com/customize/#typography)
+$font-family-base: $font-open-sans;
+$font-size-base: 14px;
+$font-size-h1: 42px;
+$font-size-h2: 32px;
+$headings-font-family: $font-open-sans;
+$headings-font-weight: 700;
+$headings-line-height: 1.2;
+$headings-color: inherit;
+
+body {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+a {
+  outline: none;
+
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+}
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+

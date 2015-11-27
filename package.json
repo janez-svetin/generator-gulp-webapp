@@ -24,7 +24,8 @@
     "h5bp",
     "modernizr",
     "jquery",
-    "gulp"
+    "gulp",
+    "jade"
   ],
   "dependencies": {
     "chalk": "^1.0.0",

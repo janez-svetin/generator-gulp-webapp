@@ -51,7 +51,7 @@ module.exports = generators.Base.extend({
     var done = this.async();
 
     if (!this.options['skip-welcome-message']) {
-      this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, jQuery, and a gulpfile to build your app.'));
+      this.log(yosay('\'Allo \'allo! Out of the box I include Bootstrap, jQuery, Sass, Jade and a gulpfile to build your app.'));
     }
 
     var prompts = [{
@@ -59,10 +59,6 @@ module.exports = generators.Base.extend({
       name: 'features',
       message: 'What more would you like?',
       choices: [{
-        name: 'Sass',
-        value: 'includeSass',
-        checked: true
-      }, {
         name: 'Bootstrap',
         value: 'includeBootstrap',
         checked: true
@@ -90,7 +86,6 @@ module.exports = generators.Base.extend({
 
       // manually deal with the response, get back and store the results.
       // we change a bit this way of doing to automatically do this in the self.prompt() method.
-      this.includeSass = hasFeature('includeSass');
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeModernizr = hasFeature('includeModernizr');
       this.includeJQuery = answers.includeJQuery;
@@ -108,7 +103,6 @@ module.exports = generators.Base.extend({
           date: (new Date).toISOString().split('T')[0],
           name: this.pkg.name,
           version: this.pkg.version,
-          includeSass: this.includeSass,
           includeBootstrap: this.includeBootstrap,
           testFramework: this.options['test-framework']
         }
@@ -116,23 +110,21 @@ module.exports = generators.Base.extend({
     },
 
     packageJSON: function () {
-      this.fs.copyTpl(
+      this.fs.copy(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json'),
-        {
-          includeSass: this.includeSass
-        }
+        this.destinationPath('package.json')
       );
     },
 
     git: function () {
       this.fs.copy(
         this.templatePath('gitignore'),
-        this.destinationPath('.gitignore'));
-
+        this.destinationPath('.gitignore')
+      );
       this.fs.copy(
         this.templatePath('gitattributes'),
-        this.destinationPath('.gitattributes'));
+        this.destinationPath('.gitattributes')
+      );
     },
 
     bower: function () {
@@ -143,7 +135,6 @@ module.exports = generators.Base.extend({
       };
 
       if (this.includeBootstrap) {
-        if (this.includeSass) {
           bowerJson.dependencies['bootstrap-sass'] = '~3.3.5';
           bowerJson.overrides = {
             'bootstrap-sass': {
@@ -154,19 +145,6 @@ module.exports = generators.Base.extend({
               ]
             }
           };
-        } else {
-          bowerJson.dependencies['bootstrap'] = '~3.3.5';
-          bowerJson.overrides = {
-            'bootstrap': {
-              'main': [
-                'less/bootstrap.less',
-                'dist/css/bootstrap.css',
-                'dist/js/bootstrap.js',
-                'dist/fonts/*'
-              ]
-            }
-          };
-        }
       } else if (this.includeJQuery) {
         bowerJson.dependencies['jquery'] = '~2.1.1';
       }
@@ -192,41 +170,33 @@ module.exports = generators.Base.extend({
     h5bp: function () {
       this.fs.copy(
         this.templatePath('favicon.ico'),
-        this.destinationPath('app/favicon.ico')
+        this.destinationPath('dev/favicon.ico')
       );
 
       this.fs.copy(
         this.templatePath('apple-touch-icon.png'),
-        this.destinationPath('app/apple-touch-icon.png')
+        this.destinationPath('dev/apple-touch-icon.png')
       );
 
       this.fs.copy(
         this.templatePath('robots.txt'),
-        this.destinationPath('app/robots.txt'));
+        this.destinationPath('dev/robots.txt')
+      );
     },
 
     styles: function () {
-      var css = 'main';
-
-      if (this.includeSass) {
-        css += '.scss';
-      } else {
-        css += '.css';
-      }
-
-      this.fs.copyTpl(
-        this.templatePath(css),
-        this.destinationPath('app/styles/' + css),
-        {
-          includeBootstrap: this.includeBootstrap
-        }
+      this.fs.copy(
+        this.templatePath('styles'),
+        this.destinationPath("dev/styles"),
+        { nodir : false }
       );
     },
 
     scripts: function () {
       this.fs.copy(
-        this.templatePath('main.js'),
-        this.destinationPath('app/scripts/main.js')
+        this.templatePath('scripts'),
+        this.destinationPath("dev/scripts"),
+        { nodir : false }
       );
     },
 
@@ -235,21 +205,14 @@ module.exports = generators.Base.extend({
 
       // path prefix for Bootstrap JS files
       if (this.includeBootstrap) {
-        bsPath = '../bower_components/';
-
-        if (this.includeSass) {
-          bsPath += 'bootstrap-sass/assets/javascripts/bootstrap/';
-        } else {
-          bsPath += 'bootstrap/js/';
-        }
+        bsPath = '../bower_components/bootstrap-sass/assets/javascripts/bootstrap/';
       }
 
       this.fs.copyTpl(
         this.templatePath('layouts/default.jade'),
-        this.destinationPath('app/layouts/default.jade'),
+        this.destinationPath('dev/layouts/default.jade'),
         {
           appname: this.appname,
-          includeSass: this.includeSass,
           includeBootstrap: this.includeBootstrap,
           includeModernizr: this.includeModernizr,
           includeJQuery: this.includeJQuery,
@@ -272,14 +235,43 @@ module.exports = generators.Base.extend({
       );
 
       this.fs.copy(
+        this.templatePath('layouts/page.jade'),
+        this.destinationPath('dev/layouts/page.jade')
+      );
+
+      this.fs.copy(
         this.templatePath('index.jade'),
-        this.destinationPath('app/index.jade')
+        this.destinationPath('dev/index.jade')
       );
     },
 
     misc: function () {
-      mkdirp('app/images');
-      mkdirp('app/fonts');
+      // mkdirp('dev/images');
+      mkdirp('dev/fonts');
+    },
+
+    images: function() {
+      this.fs.copy(
+        this.templatePath('images'),
+        this.destinationPath("dev/images"),
+        { nodir : false }
+      );
+    },
+
+    modules: function() {
+      this.fs.copy(
+        this.templatePath('modules'),
+        this.destinationPath("dev/modules"),
+        { nodir : false }
+      );
+    },
+
+    elements: function() {
+      this.fs.copy(
+        this.templatePath('elements'),
+        this.destinationPath("dev/elements"),
+        { nodir : false }
+      );
     }
   },
 
@@ -304,15 +296,12 @@ module.exports = generators.Base.extend({
       this.log(howToInstall);
       return;
     }
-
-    if (this.includeSass) {
-      // wire Bower packages to .scss
-      wiredep({
-        bowerJson: bowerJson,
-        directory: 'bower_components',
-        ignorePath: /^(\.\.\/)+/,
-        src: 'app/styles/*.scss'
-      });
-    }
+    // wire Bower packages to .scss
+    wiredep({
+      bowerJson: bowerJson,
+      directory: 'bower_components',
+      ignorePath: /^(\.\.\/)+/,
+      src: 'dev/styles/*.scss'
+    });
   }
 });

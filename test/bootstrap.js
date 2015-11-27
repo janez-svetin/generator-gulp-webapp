@@ -48,7 +48,6 @@ describe('Bootstrap feature', function () {
         .inDir(path.join(__dirname, 'temp'))
         .withOptions({'skip-install': true})
         .withPrompts({features: [
-          'includeSass',
           'includeBootstrap'
         ]})
         .on('end', done);

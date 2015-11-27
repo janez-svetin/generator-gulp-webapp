@@ -1,0 +1,18 @@
+//Sprite
+//Easy graphic position selection from the sprite: http://www.spritecow.com/
+// $sprite: url(../images/sprite.png);
+
+.m-Logo {
+  @extend .u-Graphic;
+  // @include size(154px, 37px);
+
+  @media (min-width: $screen-sm-min) {  }
+
+  @media (min-width: $screen-lg-min) {  }
+}
+
+// .m-IconCaret {
+//   @extend .u-Graphic;
+//   @include size(12px, 9px);
+//   background: $sprite no-repeat -17px -116px;
+// } 

@@ -1,0 +1,25 @@
+//SUIT CSS naming conventions: https://github.com/suitcss/suit/blob/master/doc/naming-conventions.md
+
+.u-graphic {
+  display: inline-block;
+}
+
+.u-textNormal {
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.u-bgCover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+//Finding unintended body overflow
+//Javascript alternative: https://css-tricks.com/findingfixing-unintended-body-overflow/
+// * { background-color: rgba(255,0,0,.2); }
+// * * { background-color: rgba(0,255,0,.2); }
+// * * * { background-color: rgba(0,0,255,.2); }
+// * * * * { background-color: rgba(255,0,255,.2); } 
+// * * * * * { background-color: rgba(0,255,255,.2); }
+// * * * * * * { background-color: rgba(255,255,0,.2); }

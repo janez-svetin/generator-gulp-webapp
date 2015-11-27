@@ -1,0 +1,41 @@
+//Webfont generator: http://www.fontsquirrel.com/tools/webfont-generator
+@font-face {
+    font-family: 'open_sans';
+    src: url('../fonts/OpenSans/opensans-regular-webfont.eot');
+    src: url('../fonts/OpenSans/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans/opensans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/OpenSans/opensans-regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans/opensans-regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sans';
+    src: url('../fonts/OpenSans/opensans-italic-webfont.eot');
+    src: url('../fonts/OpenSans/opensans-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans/opensans-italic-webfont.woff2') format('woff2'),
+         url('../fonts/OpenSans/opensans-italic-webfont.woff') format('woff'),
+         url('../fonts/OpenSans/opensans-italic-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans/opensans-italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'open_sans';
+    src: url('../fonts/OpenSans/opensans-bold-webfont.eot');
+    src: url('../fonts/OpenSans/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans/opensans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/OpenSans/opensans-bold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans/opensans-bold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+//Use $font-[font-name] naming convention for the variables
+$font-sans: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+$font-open-sans: 'open_sans', $font-sans;
+
